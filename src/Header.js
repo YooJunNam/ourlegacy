@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import ModalMen from './Modal/ModalMen';
 
-
 const Header = () => {
-  const [modal, setModal] = useState('category')
-  const [hover, setHover] = useState(false)
-  // const categoryMouseOverHandelr = (event) => {
-  //   // e.target.value == MEN
-  //   // setModal(MEN);
+  const [modal, setModal] = useState('category');
+  const [hover, setHover] = useState(false);
 
-  // }
   return (
     <div className="Page">
       <div className="Header">
@@ -25,41 +20,38 @@ const Header = () => {
           <HiddenButton>SEARCH</HiddenButton>
         </FirstBlock>
 
-
         <SecondBlock>
-          <CenterMenuList isHovered={hover} >
-            <WhiteCategory isHovered={hover} onMouseOver={() => {
-              setModal('man')
-              setHover(true)
-            }}
-              onMouseOut={() => {
-                setModal('category')
-                setHover(false)
+          <CenterMenuList isHovered={hover}>
+            <WhiteCategory
+              isHovered={hover}
+              onMouseOver={() => {
+                setModal('man');
+                setHover(true);
               }}
-
-            >MENS</WhiteCategory>
-            <WhiteCategory >WOMENS</WhiteCategory>
+              onMouseOut={() => {
+                setModal('category');
+                setHover(false);
+              }}
+            >
+              MENS
+            </WhiteCategory>
+            <WhiteCategory>WOMENS</WhiteCategory>
             <WhiteCategory>COLLECTIONS</WhiteCategory>
             <WhiteCategory>INFO</WhiteCategory>
-            {(modal == 'man') ? <ModalMen /> :
-              (modal == 'category') ? null : undefined}
+            {modal == 'man' ? (
+              <ModalMen />
+            ) : modal == 'category' ? null : undefined}
           </CenterMenuList>
-
         </SecondBlock>
 
         <ThirdBlock>
           <HiddenButton>BASKET / 0</HiddenButton>
           <HiddenButton>ACCOUNT</HiddenButton>
         </ThirdBlock>
-
       </MenuBar>
-
-
     </div>
-  )
-}
-
-
+  );
+};
 
 const Logo = styled.svg`
   height: 33px;
@@ -80,34 +72,32 @@ const HiddenButton = styled.div`
   cursor: pointer;
   font-weight: 700;
   align-items: center;
-    display: inline-flex;
-  
+  display: inline-flex;
 `;
 
 const CenterMenuList = styled.div`
-width:500px;
-${props => !props.isHovered} {
-  background-color:black;
-  color:white;
-}
+  width: 500px;
+  ${(props) => !props.isHovered} {
+    background-color: black;
+    color: white;
+  }
 `;
 
 const WhiteCategory = styled(HiddenButton)`
-margin-right:10px;
-margin-left:10px; 
-${props => !props.isHovered} {
-background-color:black;
-color:white;
-}
+  margin-right: 10px;
+  margin-left: 10px;
+  ${(props) => !props.isHovered} {
+    background-color: black;
+    color: white;
+  }
 `;
 
 const BlackCategory = styled(HiddenButton)`
-margin-right:10px;
-margin-left:10px; 
-background-color:black;
-color:white;
-`
-
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: black;
+  color: white;
+`;
 
 const FirstBlock = styled.div`
   flex: 1;
@@ -115,19 +105,14 @@ const FirstBlock = styled.div`
 `;
 
 const SecondBlock = styled.div`
-display:flex;
+  display: flex;
   flex: 2;
   justify-content: center;
   margin-left: 10px;
-
 `;
 
 const ThirdBlock = styled.div`
   flex: 1.1;
 `;
-
-
-
-
 
 export default Header;

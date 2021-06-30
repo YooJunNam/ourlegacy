@@ -2,37 +2,83 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Page {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding-bottom: 16px;
+}
+
+.Home {
+  min-width: 400px;
+  height: auto;
+  padding: 25px;
+}
+
+ul {
+  list-style: none;
+  text-align: center;
+}
+
+.CenterMenu {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.Midcontainer {
+  justify-content: center;
+}
+.gridContainer {
+  display: inline-grid;
+  width: 1200px;
+  grid-template-columns: 1fr 1fr;
+}
+.Free {
+  width: 1230px;
+  height: 50px;
+  margin-top: 145px;
+  margin-bottom: 10px;
+}
+
+section {
+  margin-top: 30px;
+}
+
+footer {
+  margin: 100px;
+}
+
+.input {
+  border: none;
+  width: 290px;
+  border-bottom: 1px solid;
+  padding-bottom: 8px;
+}
+.input::placeholder {
+  font-weight: 550;
+  font-size: 13px;
+}
+
+.GoList {
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+
+.centerMenuList {
+  background: black;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.GoList:hover {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.drop {
+  background-color: black;
 }

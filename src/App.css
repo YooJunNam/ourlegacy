@@ -71,8 +71,7 @@ footer {
 }
 
 .centerMenuList {
-  background: black;
-  color: white;
+  width: 500px;
 }
 
 .GoList:hover {
@@ -81,4 +80,6 @@ footer {
 
 .drop {
   background-color: black;
+  display: block;
+  /* display: none; */
 }

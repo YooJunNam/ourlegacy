@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <footer>
       <Footers>
         <LeftFooter>
-          <FooterBtn>CONTACT</FooterBtn>
+          <FooterBtn>
+            <Link
+              to="/contact"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              CONTACT
+            </Link>
+          </FooterBtn>
           <FooterBtn>SHIPPING & RETURN</FooterBtn>
           <FooterBtn>TERMS & CONDITIONS</FooterBtn>
           <FooterBtn>PRIVACY PILICY</FooterBtn>

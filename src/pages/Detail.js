@@ -39,7 +39,7 @@ function Detail() {
           <ProductInfo>
             <div>
               <ProductDetailblock>
-                <FirstDetailblock>Details</FirstDetailblock>
+                <FirstDetailblock>DETAILS</FirstDetailblock>
                 <SecondDetailblock>
                   <InfoBtn
                     onClick={() => {
@@ -59,6 +59,7 @@ function Detail() {
                   </InfoBtn>
                 </SecondDetailblock>
               </ProductDetailblock>
+
               <div>
                 {openBtn == true ? (
                   <ProductDetail>
@@ -85,8 +86,50 @@ function Detail() {
                   </ProductDetail>
                 ) : undefined}
               </div>
+              <ProductDetailblock>
+                <FirstDetailblock>SIZING</FirstDetailblock>
+                <SecondDetailblock>
+                  <InfoBtn
+                    onClick={() => {
+                      setOpenBtn((prevState) => !prevState);
+                      setRotateBtn((prevState) => !prevState);
+                    }}
+                  >
+                    {rotateBtn == true ? (
+                      <Rotation>
+                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                      </Rotation>
+                    ) : (
+                      <NonRotation>
+                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                      </NonRotation>
+                    )}
+                  </InfoBtn>
+                </SecondDetailblock>
+              </ProductDetailblock>
+
+              <ProductDetailblock>
+                <FirstDetailblock>SHIPPING</FirstDetailblock>
+                <SecondDetailblock>
+                  <InfoBtn
+                    onClick={() => {
+                      setOpenBtn((prevState) => !prevState);
+                      setRotateBtn((prevState) => !prevState);
+                    }}
+                  >
+                    {rotateBtn == true ? (
+                      <Rotation>
+                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                      </Rotation>
+                    ) : (
+                      <NonRotation>
+                        <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                      </NonRotation>
+                    )}
+                  </InfoBtn>
+                </SecondDetailblock>
+              </ProductDetailblock>
             </div>
-            <div></div>
           </ProductInfo>
         </ContentDetail>
       </ContentContainer>
@@ -168,6 +211,7 @@ const ProductDetailblock = styled.div`
   height: 30px;
   border-bottom: 1px solid;
   width: 500px;
+  margin-bottom: 20px;
 `;
 
 const FirstDetailblock = styled.div`

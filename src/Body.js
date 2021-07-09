@@ -7,14 +7,13 @@ function Body() {
 
   return (
     <div className="MidContainer">
-      <section>
+      <BodyFirstSection>
         <img
           className="Free"
           src="https://ourlegacy.centracdn.net/client/dynamic/articles/freew__9957.jpg"
           alt=""
         ></img>
-      </section>
-
+      </BodyFirstSection>
       <section id="firstSection">
         <div className="gridContainer">
           <Link to="/category">
@@ -178,6 +177,13 @@ function Body() {
     </div>
   );
 }
+
+const BodyFirstSection = styled.section`
+  @media (max-width: 1060px) {
+    display: none;
+  }
+`;
+
 const MenNew = styled.div`
   display: ${(props) => (props.ishovered ? 'table' : 'none')};
   cursor: pointer;

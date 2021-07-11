@@ -5,13 +5,24 @@ import MobileWomen from './MobileWomen';
 import MobileCollections from './MobileCollections';
 import MobileInfo from './MobileInfo';
 import MobileBasketModal from './MobileBasketModal';
+import { Drawer } from 'antd';
+import BasketDrawer from '../components/basket-drawer/BasketDrawer';
 
 const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
   const [MobileMenModal, SetMobileMenModal] = useState(false);
   const [MobileWomenModal, SetMobileWomenModal] = useState(false);
   const [MobileCollectionModal, SetMobileCollectionModal] = useState(false);
   const [MobileInformation, SetMobileInformation] = useState(false);
-  const [MobileBasketModalopen, SetMobileBasketModalopen] = useState(false);
+
+  const [visible, setVisible] = useState(false);
+
+  const openBasketDrawer = () => {
+    setVisible(true);
+  };
+
+  const closeBasketDrawer = () => {
+    setVisible(false);
+  };
 
   return (
     <>
@@ -69,16 +80,14 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
             <CategoryBtn>ACCOUNT</CategoryBtn>
           </List>
           <List style={{ borderBottom: 'none' }}>
-            <CategoryBtn
-              onClick={() => {
-                SetMobileBasketdata(true);
-              }}
-            >
-              BASKET / 0
-            </CategoryBtn>
+            <CategoryBtn onClick={openBasketDrawer}>BASKET / 0</CategoryBtn>
           </List>
         </div>
       ) : undefined}
+      <BasketDrawer
+        visible={visible}
+        onClose={closeBasketDrawer}
+      ></BasketDrawer>
     </>
   );
 };

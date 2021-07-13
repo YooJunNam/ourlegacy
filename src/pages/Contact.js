@@ -70,7 +70,8 @@ function Contact() {
 export default Contact;
 
 const Container = styled.div`
-  margin-top: 170px;
+  margin-top: 200px;
+  margin-bottom: 50px;
   display: block;
 `;
 
@@ -78,12 +79,16 @@ const ContactContainer = styled.div`
   display: inline-flex;
   border: 3px solid;
   padding: 30px;
-  width: 40%;
+  width: 70%;
   font-family: 'Neue Haas Unica Pro', 'Helvetica', 'Arial', sans-serif;
   line-height: 1.5;
   letter-spacing: 0.04em;
   font-weight: 700;
   text-align: left;
+  @media (max-width: 1060px) {
+    max-width: 100%;
+    height: auto;
+    flex-direction: column;
 `;
 
 const ContactLeft = styled.div`

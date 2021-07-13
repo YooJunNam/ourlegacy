@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import './App.css';
 import Header from './Header';
 import Body from './Body';
@@ -12,6 +11,7 @@ import Category from './pages/Category';
 import Detail from './pages/Detail';
 import MobileCategory from './mobile/MobileCategory';
 import MobileBasketModal from './mobile/MobileBasketModal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [searchClose, setSearchClose] = useState(true);
@@ -37,26 +37,62 @@ function App() {
       ></Header>
 
       <Route exact={true} path="/">
-        {/* <Body></Body> */}
-        <MobileCategory
-          HamburgerModal={HamburgerModal}
-          SetMobileBasketdata={SetMobileBasketdata}
-        ></MobileCategory>
-        {}
+        {HamburgerModal == true ? (
+          <MobileCategory
+            HamburgerModal={HamburgerModal}
+            SetMobileBasketdata={SetMobileBasketdata}
+          ></MobileCategory>
+        ) : (
+          <>
+            <Body></Body>
+          </>
+        )}
       </Route>
 
       <Route exact={true} path="/category">
-        <Category />
+        {HamburgerModal == true ? (
+          <MobileCategory
+            HamburgerModal={HamburgerModal}
+            SetMobileBasketdata={SetMobileBasketdata}
+          ></MobileCategory>
+        ) : (
+          <>
+            <Category />
+          </>
+        )}
       </Route>
 
       <Route exact={true} path="/detail">
-        <Detail />
+        {HamburgerModal == true ? (
+          <MobileCategory
+            HamburgerModal={HamburgerModal}
+            SetMobileBasketdata={SetMobileBasketdata}
+          ></MobileCategory>
+        ) : (
+          <>
+            <Detail />
+          </>
+        )}
       </Route>
 
       <Route exact={true} path="/contact">
-        <Contact />
+        {HamburgerModal == true ? (
+          <MobileCategory
+            HamburgerModal={HamburgerModal}
+            SetMobileBasketdata={SetMobileBasketdata}
+          ></MobileCategory>
+        ) : (
+          <>
+            <Contact />
+          </>
+        )}
       </Route>
-      {/* <Footer></Footer> */}
+      {HamburgerModal == true ? undefined : (
+        <>
+          <Footer></Footer>
+        </>
+      )}
+
       <SearchModalContainer
         isClosed={searchClose}
         style={{

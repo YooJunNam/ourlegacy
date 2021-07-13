@@ -50,9 +50,10 @@ const CancelXicon = styled.svg`
 `;
 
 const CartList = styled.div`
-  margin-top: 2.5rem;
+  margin-top: 1rem;
   font-size: 2rem;
   font-weight: 600;
+  text-align: center;
 `;
 
 const BasketContentContainer = styled.div`
@@ -61,10 +62,12 @@ const BasketContentContainer = styled.div`
 `;
 const BasketContentLeft = styled.div`
   margin-left: 1rem;
+  font-weight: 600;
 `;
 
 const BasketContentRight = styled.div`
   margin-right: 1rem;
+  font-weight: 600;
 `;
 
 const CheckOut = styled.div`
@@ -73,6 +76,7 @@ const CheckOut = styled.div`
   background-color: #dadada;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  width: 95%;
+  width: 100%;
   display: inline-block;
+  text-align: center;
 `;

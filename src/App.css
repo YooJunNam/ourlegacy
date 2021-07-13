@@ -8,6 +8,7 @@
   right: 0;
   top: 0;
   z-index: 1;
+  justify-content: center;
 }
 .Header {
   display: flex;
@@ -34,20 +35,24 @@ ul {
 .Midcontainer {
   justify-content: center;
 }
-.gridContainer {
-  display: inline-grid;
-  width: 1200px;
-  grid-template-columns: 1fr 1fr;
+
+@media screen and (max-width: 1060px) {
+  #firstSection {
+    margin-top: 100px;
+  }
 }
+
+.imageSize {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 .Free {
   width: 1230px;
   height: 50px;
   margin-top: 145px;
   margin-bottom: 10px;
-}
-
-section {
-  margin-top: 30px;
 }
 
 footer {
@@ -83,4 +88,10 @@ footer {
 
 .item {
   position: relative;
+  display: inline-block;
+  zoom: 1;
+}
+
+.itemImageContainer {
+  text-align: center;
 }

@@ -62,18 +62,7 @@ function App() {
         )}
       </Route>
 
-      <Route exact={true} path="/detail">
-        {HamburgerModal == true ? (
-          <MobileCategory
-            HamburgerModal={HamburgerModal}
-            SetMobileBasketdata={SetMobileBasketdata}
-          ></MobileCategory>
-        ) : (
-          <>
-            <Detail />
-          </>
-        )}
-      </Route>
+      <Route exact={true} path="/detail/:itemId" component={Detail}></Route>
 
       <Route exact={true} path="/contact">
         {HamburgerModal == true ? (

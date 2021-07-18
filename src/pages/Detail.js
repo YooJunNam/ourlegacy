@@ -1,51 +1,67 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Select } from 'antd';
+import { Alert, Select } from 'antd';
 import { Carousel } from 'react-bootstrap';
 import DetailBox from '../components/DetailBox/detailbox';
+import axios from 'axios';
+import Operation from 'antd/lib/transfer/operation';
 
-function Detail() {
+function Detail({ match }) {
   const [index, setIndex] = useState(0);
-
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
+
+  const [item, setItem] = useState({});
+  const [error, setError] = useState(null);
+
+  function getItemsDetail(itemId) {
+    axios
+      .get(`http://192.168.25.48:3000/items/${itemId}`)
+      .then((res) => {
+        setItem(res.data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }
+
+  useEffect(() => {
+    getItemsDetail(match.params.itemId);
+  }, []);
+
+  if (error)
+    return (
+      <Alert
+        message="Error"
+        description="Try Again Please."
+        type="error"
+        showIcon
+      />
+    );
 
   return (
     <Container>
       <ContentContainer>
         <ContentImage>
           <Carousel activeIndex={index} onSelect={handleSelect}>
-            <Carousel.Item>
-              <img
-                src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-                alt="First slide"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              ></img>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_29470eec48-m2201cbte__0327-full.jpg"
-                alt="Second slide"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              ></img>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_bd105996a9-m2201cbte__0335-full.jpg"
-                alt="Third slide"
-                style={{ maxWidth: '100%', height: 'auto' }}
-              ></img>
-            </Carousel.Item>
+            {item?.images?.map((image) => (
+              <Carousel.Item>
+                <img
+                  src={image}
+                  alt={item.name}
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                ></img>
+              </Carousel.Item>
+            ))}
           </Carousel>
         </ContentImage>
 
         <ContentDetail>
           <Content>
-            <span>CAPE PARKA</span> <br />
-            <span>BLACK TECH</span> <br />
+            <span>{item.name}</span>
             <br />
-            <span>490.00 EUR</span>
+            <span>{item.priceBeforeDiscount}.00 EUR</span>
           </Content>
           <Size>
             <Select
@@ -53,10 +69,9 @@ function Detail() {
               style={{ width: '95%', float: 'left' }}
               bordered={false}
             >
-              <Select.Option value="46">46</Select.Option>
-              <Select.Option value="48">48</Select.Option>
-              <Select.Option value="50">50</Select.Option>
-              <Select.Option value="52">52</Select.Option>
+              {item?.options?.map((option) => (
+                <Select.Option value={option.id}>{option.name}</Select.Option>
+              ))}
             </Select>
           </Size>
           <div>
@@ -64,9 +79,29 @@ function Detail() {
               <span>ADD TO CART</span>
             </AddCart>
           </div>
-          <DetailBox infoname="Details"></DetailBox>
-          <DetailBox infoname="Size"></DetailBox>
-          <DetailBox infoname="SHipping"></DetailBox>
+          <DetailBox
+            infoname="Details"
+            description={item.description}
+          ></DetailBox>
+          <DetailBox infoname="Size" description="Contact me"></DetailBox>
+          <DetailBox
+            infoname="SHipping"
+            description="FREE DELIVERY ON ALL ORDERS OVER €300
+
+Standard Delivery Charges:
+
+USA and Canada / €16
+
+Delivered by DHL Express shipment in 2-5 days
+
+Rest of the World / €19
+
+Delivered by DHL Express shipment in 3-7 days
+
+Russian shipments will be made with FedEx
+
+PLEASE NOTE THAT THE DELIVERY CHARGES DO NOT INCLUDE IMPORT COSTS THAT MAY BE DUE WHEN THE PACKAGE REACHES THE COUNTRY OF DESTINATION."
+          ></DetailBox>
         </ContentDetail>
       </ContentContainer>
     </Container>

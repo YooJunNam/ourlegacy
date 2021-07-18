@@ -1,6 +1,6 @@
 import { Alert } from 'antd';
 import React, { useEffect, useState } from 'react';
-import ItemList from '../components/ItemList';
+import ItemList from '../components/item-list/ItemList';
 import { getItemsByCategoryId } from '../lib/api/items';
 
 function Category(props) {

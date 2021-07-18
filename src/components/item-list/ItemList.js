@@ -8,11 +8,18 @@ const ItemList = ({ items }) => {
         <ProductCategory>
           {items.map((item) => (
             <Link to={`/detail/${item.id}`}>
-              <CategoryImage
-                src={item.thumbnail}
-                alt={item.name}
-                width="400px"
-              ></CategoryImage>
+              <div style={{ position: 'relative' }}>
+                <CategoryImage
+                  src={item.thumbnail}
+                  alt={item.name}
+                  width="400px"
+                  style={{ display: 'block' }}
+                ></CategoryImage>
+                <div className="categoryhover">
+                  <ItemTitle>{item.name}</ItemTitle>
+                  <ItemPrice>{item.price}.00 EUR</ItemPrice>
+                </div>
+              </div>
             </Link>
           ))}
         </ProductCategory>
@@ -49,6 +56,19 @@ const ProductCategory = styled.div`
 const CategoryImage = styled.img`
   max-width: 100%;
   height: auto;
+  display: block;
 `;
 
+const ItemTitle = styled.div`
+  color: black;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  border-bottom: 2px solid #1b1b1b;
+`;
+
+const ItemPrice = styled.p`
+  color: black;
+  fontsize: 13px;
+  margintop: 12px;
+`;
 export default ItemList;

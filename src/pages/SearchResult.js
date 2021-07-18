@@ -1,6 +1,6 @@
 import { Alert } from 'antd';
 import { useEffect, useState } from 'react';
-import ItemList from '../components/ItemList';
+import ItemList from '../components/item-list/ItemList';
 import { searchItems } from '../lib/api/items';
 
 const SearchResultPage = ({ match }) => {

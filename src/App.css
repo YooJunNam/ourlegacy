@@ -97,5 +97,31 @@ footer {
   text-align: center;
 }
 
-input[type='checkbox'] {
+.categoryhover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: 'Quicksand', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.categoryhover > * {
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+
+.categoryhover:hover {
+  opacity: 1;
+}
+
+.categoryhover:hover > * {
+  transform: translateY(0);
 }

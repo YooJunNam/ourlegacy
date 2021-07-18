@@ -1,50 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Alert } from 'antd';
 
 function Category() {
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(null);
+
+  function getItemsByCategory(categoryId) {
+    axios
+      .get(`http://192.168.25.48:3000/items/category/${categoryId}`)
+      .then((res) => {
+        setItems(res.data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }
+
+  useEffect(() => {
+    getItemsByCategory();
+  }, []);
+
+  if (error)
+    return (
+      <Alert
+        message="Error"
+        description="Try Again Please."
+        type="error"
+        showIcon
+      />
+    );
+
   return (
     <Container>
       <CategoryContainer>
         <ProductCategory>
-          <Link to="/detail">
+          {items.map((item) => (
             <CategoryImage
-              src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-              alt="CAPE PARKA"
+              src={item.thumbnail}
+              alt={item.name}
               width="400px"
-              height="844px"
-              margin="6px"
             ></CategoryImage>
-          </Link>
-
-          <CategoryImage
-            src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-            alt="CAPE1 PARKA"
-            width="400px"
-          ></CategoryImage>
-          <CategoryImage
-            src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-            alt="CAPE1 PARKA"
-            width="400px"
-          ></CategoryImage>
-
-          <Link to="/detail">
+          ))}
+          {/* <Link to="/detail">
             <CategoryImage
               src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
               alt="CAPE1 PARKA"
               width="400px"
             ></CategoryImage>
           </Link>
-          <CategoryImage
-            src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-            alt="CAPE1 PARKA"
-            width="400px"
-          ></CategoryImage>
-          <CategoryImage
-            src="https://ourlegacy.centracdn.net/client/dynamic/images/8814_a07367d216-m2201cbte__0320-full.jpg"
-            alt="CAPE1 PARKA"
-            width="400px"
-          ></CategoryImage>
+    */}
         </ProductCategory>
       </CategoryContainer>
     </Container>

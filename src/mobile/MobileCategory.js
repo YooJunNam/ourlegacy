@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MobileMen from './MobileMen';
-import MobileWomen from './MobileWomen';
-import MobileCollections from './MobileCollections';
-import MobileInfo from './MobileInfo';
+import MobileCategoryDetail from './MobileCategoryDetail';
+
 import MobileBasketModal from './MobileBasketModal';
 import { Drawer } from 'antd';
 import BasketDrawer from '../components/basket-drawer/BasketDrawer';
@@ -41,7 +39,9 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
               MEN
             </CategoryBtn>
           </List>
-          {MobileMenModal == true ? <MobileMen /> : undefined}
+          {MobileMenModal == true ? (
+            <MobileCategoryDetail categoryName="mens" />
+          ) : undefined}
 
           <List>
             <CategoryBtn
@@ -52,7 +52,9 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
               WOMEN
             </CategoryBtn>
           </List>
-          {MobileWomenModal == true ? <MobileWomen /> : undefined}
+          {MobileWomenModal == true ? (
+            <MobileCategoryDetail categoryName="womens" />
+          ) : undefined}
 
           <List>
             <CategoryBtn
@@ -63,7 +65,9 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
               COLLECTIONS
             </CategoryBtn>
           </List>
-          {MobileCollectionModal == true ? <MobileCollections /> : undefined}
+          {MobileCollectionModal == true ? (
+            <MobileCategoryDetail categoryName="collections" />
+          ) : undefined}
 
           <List>
             <CategoryBtn
@@ -74,7 +78,9 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
               INFO
             </CategoryBtn>
           </List>
-          {MobileInformation == true ? <MobileInfo /> : undefined}
+          {MobileInformation == true ? (
+            <MobileCategoryDetail categoryName="infos" />
+          ) : undefined}
 
           <List>
             <CategoryBtn>ACCOUNT</CategoryBtn>

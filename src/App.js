@@ -13,6 +13,7 @@ import MobileBasketModal from './mobile/MobileBasketModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/account/Login';
 import Contact from './pages/Contact';
+import Signin from './pages/account/Sign-in';
 
 function App() {
   const [searchClose, setSearchClose] = useState(true);
@@ -49,8 +50,9 @@ function App() {
           ></MobileCategory>
         ) : (
           <>
-            <Body></Body>
-            {/* <Login></Login> */}
+            {/* <Body></Body>
+            <Login></Login> */}
+            {<Signin></Signin>}
           </>
         )}
       </Route>
@@ -103,11 +105,7 @@ function App() {
         )}
       </Route>
 
-      {HamburgerModal == true ? undefined : (
-        <>
-          <Footer></Footer>
-        </>
-      )}
+      {HamburgerModal == true ? undefined : <>{/* <Footer></Footer> */}</>}
 
       <SearchModalContainer
         isClosed={searchClose}

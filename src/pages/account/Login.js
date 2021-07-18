@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { UserContext } from '../../App';
 import { login } from '../../lib/api/auth';
@@ -6,7 +6,7 @@ import { login } from '../../lib/api/auth';
 function Login({ history }) {
   const [loginInfo, setLoginInfo] = useState({ username: '', password: '' });
 
-  const { userState, setUserState } = useContext(UserContext);
+  const { userState, updateUserState } = useContext(UserContext);
   console.log(userState);
 
   if (userState) {
@@ -20,12 +20,17 @@ function Login({ history }) {
     });
   };
 
+  const updateUserCart = () => {
+    const cart = window.localStorage.getItem('cart');
+    if (cart) {
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     login(loginInfo.username, loginInfo.password)
       .then((res) => {
-        console.log(res.data);
-        setUserState(res.data.user);
+        updateUserState(res.data.user);
         history.push('/');
       })
       .catch((err) => {

@@ -1,22 +1,27 @@
-import React, { useState, useContext, createContext } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { createContext, useState } from 'react';
+import { Route } from 'react-router-dom';
+import styled from 'styled-components';
 import './App.css';
-import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
-import styled from 'styled-components';
-import Search from './Navigation/Search';
-import { Link, Route, Switch } from 'react-router-dom';
-import Category from './pages/Category';
-import Detail from './pages/Detail';
-import MobileCategory from './mobile/MobileCategory';
+import Header from './Header';
 import MobileBasketModal from './mobile/MobileBasketModal';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import MobileCategory from './mobile/MobileCategory';
+import Search from './Navigation/Search';
 import Login from './pages/account/Login';
+import Category from './pages/Category';
 import Contact from './pages/Contact';
+import Detail from './pages/Detail';
 
 export const UserContext = createContext();
 function App() {
-  const [userState, setUserState] = useState(null);
+  const [userState, setUserState] = useState(
+    window.localStorage.getItem('user') ?? null,
+  );
+  const [cartState, setCartState] = useState(
+    window.localStorage.getItem('cart') ?? [],
+  );
   const [searchClose, setSearchClose] = useState(true);
   const [HamburgerModal, setHamburgerModal] = useState(false);
   const [MobileBasketdata, SetMobileBasketdata] = useState(false);
@@ -34,8 +39,16 @@ function App() {
     setHamburgerModal(false);
   };
 
+  const updateUserState = (state) => {
+    try {
+      window.localStorage.setItem('user', state);
+      setUserState(window.localStorage.getItem('user') ?? userState);
+    } catch (err) {
+      console.log(`LocalStorage is not avaliable`);
+    }
+  };
   return (
-    <UserContext.Provider value={{ userState, setUserState }}>
+    <UserContext.Provider value={{ userState, updateUserState }}>
       {userState ? <div>로그인</div> : <div>미로그인</div>}
       <div className="App">
         {MobileBasketdata == true ? <MobileBasketModal /> : undefined}

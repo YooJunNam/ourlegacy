@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Alert, Select } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
+import styled from 'styled-components';
 import DetailBox from '../components/DetailBox/detailbox';
-import axios from 'axios';
+import { getItemByItemId } from '../lib/api/items';
 
 function Detail({ match }) {
   const [index, setIndex] = useState(0);
@@ -15,8 +15,7 @@ function Detail({ match }) {
   const [error, setError] = useState(null);
 
   function getItemsDetail(itemId) {
-    axios
-      .get(`http://192.168.25.48:3000/items/${itemId}`)
+    getItemByItemId(itemId)
       .then((res) => {
         setItem(res.data);
       })

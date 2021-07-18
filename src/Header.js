@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ModalMen from './modal/ModalMen';
-import ModalWomen from './modal/ModalWomen';
-import Collections from './modal/Collections';
-import Info from './modal/Info';
+import NavMenu from './Navigation/NavMenu';
+
 import { PresetColorTypes } from 'antd/lib/_util/colors';
 import BasketDrawer from './components/basket-drawer/BasketDrawer';
 import { Fragment } from 'react';
 
-const Header = ({ openSearchModal, OpenHamburger }) => {
+const Header = ({ openSearchModal, switchHamburger }) => {
   const [modal, setModal] = useState('category');
   const [hover, setHover] = useState(false);
   const [basketVisible, setBasketVisible] = useState(false);
@@ -24,7 +22,7 @@ const Header = ({ openSearchModal, OpenHamburger }) => {
           </a>
           <HamburgerBtn
             onClick={() => {
-              OpenHamburger();
+              switchHamburger();
             }}
           >
             <img src="https://img.icons8.com/material-outlined/24/000000/menu--v3.png" />
@@ -90,13 +88,13 @@ const Header = ({ openSearchModal, OpenHamburger }) => {
                 INFO
               </WhiteCategory>
               {modal == 'man' ? (
-                <ModalMen />
+                <NavMenu categoryName="mens" />
               ) : modal == 'woman' ? (
-                <ModalWomen />
+                <NavMenu categoryName="womens" />
               ) : modal == 'collections' ? (
-                <Collections />
+                <NavMenu categoryName="collections" />
               ) : modal == 'info' ? (
-                <Info />
+                <NavMenu categoryName="infos" />
               ) : undefined}
             </CenterMenuList>
           </SecondBlock>

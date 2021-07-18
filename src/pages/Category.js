@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { Alert } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { getItemsByCategoryId } from '../lib/api/items';
 
 function Category(props) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
-  function getItemsByCategory(categoryId) {
-    axios
-      .get(`http://192.168.25.48:3000/items/category/${categoryId}`)
+  function getCategory(categoryId) {
+    getItemsByCategoryId(categoryId)
       .then((res) => {
         setItems(res.data);
       })
@@ -20,7 +19,7 @@ function Category(props) {
   }
 
   useEffect(() => {
-    getItemsByCategory(props.match.params.categoryId);
+    getCategory(props.match.params.categoryId);
   }, [props.match.params.categoryId]);
 
   if (error)

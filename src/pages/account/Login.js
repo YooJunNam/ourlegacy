@@ -1,30 +1,65 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { UserContext } from '../../App';
+import { login } from '../../lib/api/auth';
 
-function Login() {
+function Login({ history }) {
+  const [loginInfo, setLoginInfo] = useState({ username: '', password: '' });
+
+  const { userState, setUserState } = useContext(UserContext);
+  console.log(userState);
+
+  if (userState) {
+    history.push('/');
+  }
+  const updateLoginInfo = (event) => {
+    // input value 가져오기
+    const { name, value } = event.target;
+    setLoginInfo((pastInfo) => {
+      return { ...pastInfo, [name]: value };
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(loginInfo.username, loginInfo.password)
+      .then((res) => {
+        console.log(res.data);
+        setUserState(res.data.user);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <LoginSection>
       <LoginContationer>
-        <LoginForm>
+        <LoginForm onSubmit={handleSubmit}>
           <span style={{ marginBottom: '20px', fontWeight: '600' }}>
             SIGN INTO YOUR ACCOUNT
           </span>
           <div style={{ marginTop: '30px', marginBottom: '20px' }}>
             <input
               type="text"
-              name="id"
-              id="id"
+              name="username"
+              id="username"
               autoComplete="off"
               required
               style={{ border: '0', width: '100%' }}
               placeholder="Email Address"
+              value={loginInfo.username}
+              onChange={updateLoginInfo}
             ></input>
           </div>
           <div style={{ marginBottom: '10px' }}>
             <input
+              onChange={updateLoginInfo}
+              value={loginInfo.password}
               type="password"
-              name="pw"
-              id="pw"
+              name="password"
+              id="password"
               autoComplete="off"
               required
               placeholder="Password"
@@ -36,7 +71,7 @@ function Login() {
           </div>
           <div className="btn-area">
             <button
-              type="submit"
+              action="submit"
               style={{
                 backgroundColor: 'black',
                 border: '0',

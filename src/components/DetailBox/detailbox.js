@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { Alert } from 'antd';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const DetailBox = ({ infoname }) => {
+const DetailBox = ({ infoname, description = '' }) => {
   const [openDetail, setOpenDetail] = useState(false);
   const [rotateBtn, setRotateBtn] = useState(false);
 
@@ -32,15 +34,18 @@ const DetailBox = ({ infoname }) => {
 
         <div>
           {openDetail == true ? (
-            <ProductDetail>
-              · Italian fabric <br />· 100% Polyester
-            </ProductDetail>
+            <ProductDetail>{brReplace(description)}</ProductDetail>
           ) : undefined}
         </div>
       </div>
     </ProductInfo>
   );
 };
+
+function brReplace(str) {
+  return str.replace(/<BR>|<br>|\/N/g, '/n');
+}
+
 const ProductInfo = styled.div`
   float: left;
   text-align: left;
@@ -65,6 +70,8 @@ const ProductDetail = styled.p`
   font-weight: 400;
   line-height: 1.4;
   letter-spacing: 0em;
+  white-space: pre-line;
+  width: 500px;
 `;
 
 const ProductDetailblock = styled.div`

@@ -43,7 +43,7 @@ function App() {
 
   const updateUserState = (state) => {
     try {
-      window.localStorage.setItem('user', state);
+      window.localStorage.setItem('user', JSON.stringify(state));
       setUserState(window.localStorage.getItem('user') ?? userState);
     } catch (err) {
       console.log(`LocalStorage is not avaliable`);

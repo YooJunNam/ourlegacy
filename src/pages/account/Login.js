@@ -7,7 +7,6 @@ function Login({ history }) {
   const [loginInfo, setLoginInfo] = useState({ username: '', password: '' });
 
   const { userState, updateUserState } = useContext(UserContext);
-  console.log(userState);
 
   if (userState) {
     history.push('/');

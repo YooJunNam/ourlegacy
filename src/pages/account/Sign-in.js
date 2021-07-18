@@ -1,7 +1,47 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { UserContext } from '../../App';
+import { signin } from '../../lib/api/auth';
 
-function Signin() {
+function Signin({ history }) {
+  const [registerInfo, setRegisterInfo] = useState({
+    lastName: undefined,
+    password: undefined,
+    email: undefined,
+    address: undefined,
+    firstName: undefined,
+    phone: undefined,
+    zipCode: undefined,
+    city: undefined,
+  });
+  const { userState, updateUserState } = useContext(UserContext);
+
+  const changeInfo = (inputName, value) => {
+    setRegisterInfo((prev) => setRegisterInfo({ ...prev, [inputName]: value }));
+  };
+
+  const changeInputHandler = (e) => {
+    const { name, value } = e.target;
+    changeInfo(name, value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    signin(registerInfo)
+      .then((res) => {
+        console.log(res.data);
+        updateUserState(res.data);
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  if (userState) {
+    history.push('/');
+  }
+
   return (
     <section>
       <Container>
@@ -11,68 +51,109 @@ function Signin() {
           <h5>BILLING/INVOICE ADDRESS</h5>
           <br />
 
-          <div>
-            <SigninInputForm
-              style={{}}
-              placeholder="First Name"
-            ></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="Last Name"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="E-mail"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="Address"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="Zip Code"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="City"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="Phone number"></SigninInputForm>
-          </div>
-          <div>
-            <SigninInputForm placeholder="Password"></SigninInputForm>
-          </div>
+          <form onSubmit={submitHandler}>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                style={{}}
+                placeholder="First Name"
+                name="firstName"
+                required
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="Last Name"
+                name="lastName"
+                required
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="E-mail"
+                name="email"
+                required
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="Address"
+                name="address"
+                required
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="Zip Code"
+                name="zipCode"
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="City"
+                name="city"
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="Phone number"
+                name="phone"
+                required
+              ></SigninInputForm>
+            </div>
+            <div>
+              <SigninInputForm
+                onChange={changeInputHandler}
+                placeholder="Password"
+                name="password"
+                type="password"
+                required
+              ></SigninInputForm>
+            </div>
 
-          <div style={{ margin: '30px' }}>
-            <span style={{ display: 'inline' }}>
-              I accept terms & conditions and I have read and understood the
-              Privacy Policy
-            </span>
-            <div
+            <div style={{ margin: '30px' }}>
+              <span style={{ display: 'inline' }}>
+                I accept terms & conditions and I have read and understood the
+                Privacy Policy
+              </span>
+              <div
+                style={{
+                  display: 'inline',
+                  marginTop: '10px',
+                  width: '100%',
+                  padding: '6px',
+                }}
+              >
+                <input
+                  required
+                  type="checkbox"
+                  className="SigninCheckbox"
+                  style={{
+                    verticalAlign: 'middle',
+                  }}
+                ></input>
+              </div>
+            </div>
+            <button
+              action="submit"
               style={{
-                display: 'inline',
-                marginTop: '10px',
-                width: '100%',
-                padding: '6px',
+                width: '50%',
+                height: '50px',
+                color: 'white',
+                background: 'black',
+                border: 'none',
+                fontWeight: '600',
               }}
             >
-              <input
-                type="checkbox"
-                className="SigninCheckbox"
-                style={{
-                  verticalAlign: 'middle',
-                }}
-              ></input>
-            </div>
-          </div>
-          <button
-            style={{
-              width: '50%',
-              height: '50px',
-              color: 'white',
-              background: 'black',
-              border: 'none',
-              fontWeight: '600',
-            }}
-          >
-            <span>CREATE AN ACCOUNT</span>
-          </button>
+              <span>CREATE AN ACCOUNT</span>
+            </button>
+          </form>
         </ContactContainer>
       </Container>
     </section>

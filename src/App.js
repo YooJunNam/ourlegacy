@@ -23,8 +23,8 @@ function App() {
     setSearchClose(false);
   };
 
-  const openHamburger = () => {
-    setHamburgerModal(true);
+  const switchHamburger = () => {
+    setHamburgerModal((prev) => !prev);
   };
 
   const closeHambugerModal = () => {
@@ -37,7 +37,7 @@ function App() {
       {MobileBasketdata == true ? <MobileBasketModal /> : undefined}
       <Header
         openSearchModal={openSearchModal}
-        openHamburger={openHamburger}
+        switchHamburger={switchHamburger}
       ></Header>
 
       <Route exact={true} path="/">

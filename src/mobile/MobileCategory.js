@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import MobileCategoryDetail from './MobileCategoryDetail';
 
 import MobileBasketModal from './MobileBasketModal';
 import { Drawer } from 'antd';
 import BasketDrawer from '../components/basket-drawer/BasketDrawer';
+import { ModalStore } from '../App';
 
-const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
+const MobileCategory = ({
+  HamburgerModal,
+  SetMobileBasketdata,
+  closeHamburgerModal,
+}) => {
   const [MobileMenModal, SetMobileMenModal] = useState(false);
   const [MobileWomenModal, SetMobileWomenModal] = useState(false);
   const [MobileCollectionModal, SetMobileCollectionModal] = useState(false);
@@ -21,7 +26,6 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
   const closeBasketDrawer = () => {
     setVisible(false);
   };
-
   return (
     <>
       {HamburgerModal === true ? (
@@ -40,7 +44,10 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
             </CategoryBtn>
           </List>
           {MobileMenModal == true ? (
-            <MobileCategoryDetail categoryName="mens" />
+            <MobileCategoryDetail
+              categoryName="mens"
+              linkClickHandler={closeHamburgerModal}
+            />
           ) : undefined}
 
           <List>
@@ -53,7 +60,10 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
             </CategoryBtn>
           </List>
           {MobileWomenModal == true ? (
-            <MobileCategoryDetail categoryName="womens" />
+            <MobileCategoryDetail
+              categoryName="womens"
+              linkClickHandler={closeHamburgerModal}
+            />
           ) : undefined}
 
           <List>
@@ -66,7 +76,10 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
             </CategoryBtn>
           </List>
           {MobileCollectionModal == true ? (
-            <MobileCategoryDetail categoryName="collections" />
+            <MobileCategoryDetail
+              categoryName="collections"
+              linkClickHandler={closeHamburgerModal}
+            />
           ) : undefined}
 
           <List>
@@ -79,7 +92,10 @@ const MobileCategory = ({ HamburgerModal, SetMobileBasketdata }) => {
             </CategoryBtn>
           </List>
           {MobileInformation == true ? (
-            <MobileCategoryDetail categoryName="infos" />
+            <MobileCategoryDetail
+              categoryName="infos"
+              linkClickHandler={closeHamburgerModal}
+            />
           ) : undefined}
 
           <List>

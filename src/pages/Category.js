@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Alert } from 'antd';
 
-function Category() {
+function Category(props) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
@@ -20,8 +20,8 @@ function Category() {
   }
 
   useEffect(() => {
-    getItemsByCategory();
-  }, []);
+    getItemsByCategory(props.match.params.categoryId);
+  }, [props.match.params.categoryId]);
 
   if (error)
     return (
@@ -38,11 +38,13 @@ function Category() {
       <CategoryContainer>
         <ProductCategory>
           {items.map((item) => (
-            <CategoryImage
-              src={item.thumbnail}
-              alt={item.name}
-              width="400px"
-            ></CategoryImage>
+            <Link to={`/detail/${item.id}`}>
+              <CategoryImage
+                src={item.thumbnail}
+                alt={item.name}
+                width="400px"
+              ></CategoryImage>
+            </Link>
           ))}
           {/* <Link to="/detail">
             <CategoryImage

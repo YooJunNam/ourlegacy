@@ -1,18 +1,28 @@
 import FormItemInput from 'antd/lib/form/FormItemInput';
 import Item from 'antd/lib/list/Item';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import categories from '../static/categories';
 
-function MobileCategoryDetail({ categoryName }) {
+function MobileCategoryDetail({ categoryName, linkClickHandler }) {
   return (
     <MobileCategoryList>
       <div>
         {categories[categoryName]?.level2?.map((item) => (
           <MobileCategoryDetailblock>
-            <CategoryBtn>
-              <a>{item.level2}</a>
-            </CategoryBtn>
+            <Link
+              to={`/category/${item.id}`}
+              onClick={() => {
+                console.log(`link click`);
+                linkClickHandler();
+              }}
+              style={{ color: 'black' }}
+            >
+              <CategoryBtn>
+                <span style={{ fontColor: 'black' }}>{item.level2}</span>
+              </CategoryBtn>
+            </Link>
           </MobileCategoryDetailblock>
         ))}
       </div>

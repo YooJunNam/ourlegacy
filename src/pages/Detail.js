@@ -4,7 +4,6 @@ import { Alert, Select } from 'antd';
 import { Carousel } from 'react-bootstrap';
 import DetailBox from '../components/DetailBox/detailbox';
 import axios from 'axios';
-import Operation from 'antd/lib/transfer/operation';
 
 function Detail({ match }) {
   const [index, setIndex] = useState(0);

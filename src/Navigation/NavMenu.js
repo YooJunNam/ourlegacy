@@ -1,28 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import categories from '../static/categories';
 
 function NavMenu({ categoryName }) {
   return (
     <div className="drop">
-      <Modal>
+      <NavigationList>
         {/* <div className="ProductList"> */}
         <ListContainer>
           {categories[categoryName]?.level2?.map((item) => (
-            <ModalList>
-              <a href="#" className="GoList">
-                {item.level2}
-              </a>
-            </ModalList>
+            <NavigationMenu>
+              <Link to={`/category/${item.id}`}>
+                <span href="#" className="GoList">
+                  {item.level2}
+                </span>
+              </Link>
+            </NavigationMenu>
           ))}
         </ListContainer>
         {/* </div> */}
-      </Modal>
+      </NavigationList>
     </div>
   );
 }
 
-const Modal = styled.div`
+const NavigationList = styled.div`
   justify-content: center;
   text-align: center;
   width: 140%;
@@ -38,7 +41,7 @@ const ListContainer = styled.ul`
   background-color: black;
 `;
 
-const ModalList = styled.li`
+const NavigationMenu = styled.li`
   color: white;
   font-family: 'Neue Haas Unica Pro', 'Helvetica', 'Arial', sans-serif;
   font-size: 0.8125rem;

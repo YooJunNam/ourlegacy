@@ -7,3 +7,7 @@ export const getItemsByCategoryId = (categoryId) => {
 export const getItemByItemId = (itemId) => {
   return client.get(`items/${itemId}`);
 };
+
+export const searchItems = (query) => {
+  return client.get(`items/search/${query}`);
+};

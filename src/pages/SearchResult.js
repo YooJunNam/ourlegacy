@@ -1,25 +1,25 @@
 import { Alert } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ItemList from '../components/ItemList';
-import { getItemsByCategoryId } from '../lib/api/items';
+import { searchItems } from '../lib/api/items';
 
-function Category(props) {
+const SearchResultPage = ({ match }) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
-  function getCategory(categoryId) {
-    getItemsByCategoryId(categoryId)
+  const search = (query) => {
+    searchItems(query)
       .then((res) => {
         setItems(res.data);
       })
-      .catch((error) => {
-        setError(error);
+      .catch((err) => {
+        setError(err);
       });
-  }
+  };
 
   useEffect(() => {
-    getCategory(props.match.params.categoryId);
-  }, [props.match.params.categoryId]);
+    search(match.params.query);
+  }, []);
 
   if (error)
     return (
@@ -30,8 +30,7 @@ function Category(props) {
         showIcon
       />
     );
-
   return <ItemList items={items} />;
-}
+};
 
-export default Category;
+export default SearchResultPage;

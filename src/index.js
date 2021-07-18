@@ -1,15 +1,15 @@
+import 'antd/dist/antd.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter, Route } from 'react-router-dom';
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
-import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <Route path="/" component={App} />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),

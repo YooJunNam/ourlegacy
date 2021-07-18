@@ -10,9 +10,11 @@ import MobileBasketModal from './mobile/MobileBasketModal';
 import MobileCategory from './mobile/MobileCategory';
 import Search from './Navigation/Search';
 import Login from './pages/account/Login';
+import Signin from './pages/account/Sign-in';
 import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Detail from './pages/Detail';
+import SearchResultPage from './pages/SearchResult';
 
 export const UserContext = createContext();
 function App() {
@@ -75,6 +77,12 @@ function App() {
           }}
         ></Route>
         <Route exact={true} path="/login" component={Login}></Route>
+        <Route exact={true} path="/signin" component={Signin}></Route>
+        <Route
+          exact={true}
+          path="/search/:query"
+          component={SearchResultPage}
+        ></Route>
 
         <Route
           exact={true}
@@ -148,7 +156,11 @@ function App() {
             setSearchClose(true);
           }}
         >
-          <Search />
+          <Search
+            closeHandler={() => {
+              setSearchClose(true);
+            }}
+          />
         </SearchModalContainer>
       </div>
     </UserContext.Provider>

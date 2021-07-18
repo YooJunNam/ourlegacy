@@ -1,11 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Search() {
+const Search = withRouter(({ match, history, closeHandler }) => {
+  const [query, setQuery] = useState('');
+
+  const inputHandler = (e) => {
+    console.log(history);
+    setQuery(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key == 'Enter') {
+      closeHandler();
+      history.push(`/search/${query}`);
+    }
+  };
+
   return (
     <SearchContainer onClick={(e) => e.stopPropagation()}>
       <ProductSearch>
-        <SearchInput placeholder="Search product"></SearchInput>
+        <SearchInput
+          onChange={inputHandler}
+          placeholder="Search product"
+          onKeyPress={handleKeyPress}
+        ></SearchInput>
         <SearchBtn>
           <span class="MuiIconButton-label">
             <svg
@@ -21,7 +40,7 @@ function Search() {
       </ProductSearch>
     </SearchContainer>
   );
-}
+});
 
 const SearchContainer = styled.div`
   text-align: center;

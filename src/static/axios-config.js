@@ -1,1 +1,2 @@
-export const baseUrl = 'http://192.168.25.48:3000';
+export const baseUrl = 'https://nujooy.shop';
+

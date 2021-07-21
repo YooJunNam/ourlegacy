@@ -15,6 +15,7 @@ import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Detail from './pages/Detail';
 import SearchResultPage from './pages/SearchResult';
+import OrderList from './pages/account/OrderList';
 
 export const UserContext = createContext();
 function App() {
@@ -72,6 +73,7 @@ function App() {
             ) : (
               <>
                 <Body></Body>
+                {/* {<OrderList></OrderList>} */}
               </>
             );
           }}

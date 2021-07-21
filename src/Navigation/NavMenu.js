@@ -9,15 +9,20 @@ function NavMenu({ categoryName }) {
       <NavigationList>
         {/* <div className="ProductList"> */}
         <ListContainer>
-          {categories[categoryName]?.level2?.map((item) => (
-            <NavigationMenu>
-              <Link to={`/category/${item.id}`}>
-                <span href="#" className="GoList">
-                  {item.level2}
-                </span>
-              </Link>
-            </NavigationMenu>
-          ))}
+          {categories[categoryName]?.level2
+            ?.sort((a, b) => a.id - b.id)
+            .map((item) => (
+              <NavigationMenu>
+                <Link
+                  to={`/category/${item.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <span href="#" className="GoList">
+                    {item.level2}
+                  </span>
+                </Link>
+              </NavigationMenu>
+            ))}
         </ListContainer>
         {/* </div> */}
       </NavigationList>

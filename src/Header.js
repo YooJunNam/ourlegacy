@@ -107,7 +107,12 @@ const Header = ({ openSearchModal, switchHamburger }) => {
             >
               BASKET / 0
             </HiddenButton>
-            <HiddenButton>ACCOUNT</HiddenButton>
+            <Link
+              to="/login"
+              style={{ color: 'black', textDecoration: 'none' }}
+            >
+              <HiddenButton>ACCOUNT</HiddenButton>
+            </Link>
           </ThirdBlock>
         </MenuBar>
 

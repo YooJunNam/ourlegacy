@@ -160,7 +160,8 @@ const Size = styled.div`
 const AddCart = styled.button`
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
-  background-color: rgba(0, 0, 0, 0.12);
+  background-color: black;
+  color: white;
   border: none;
   width: 500px;
   height: 60px;

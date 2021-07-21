@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Alert } from 'antd';
+import { getUserCart } from '../lib/api/cart';
+import BasketItem from '../components/BasketItem';
 
 function MobileBasketModal(props) {
   const { handleCloseDrawer } = props;
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(null);
+
+  let totalPrice = 0;
+  for (let item of items) {
+    totalPrice += item.item.price;
+  }
+
+  function getBasket() {
+    getUserCart()
+      .then((res) => {
+        console.log(res.data);
+        setItems(res.data);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }
+
+  useEffect(() => {
+    getBasket();
+  }, []);
+
+  if (error)
+    return (
+      <Alert
+        message="Error"
+        description="Try Again Please."
+        type="error"
+        showIcon
+      />
+    );
+
   return (
     <div style={{ width: '100%' }}>
       <CancelBtn onClick={handleCloseDrawer}>
@@ -12,20 +48,23 @@ function MobileBasketModal(props) {
       </CancelBtn>
       <CartList>
         <span>YOUR CART LIST</span>
+        {items.map((item) => (
+          <BasketItem basket={item} />
+        ))}
       </CartList>
 
       <div style={{ marginTop: '24rem' }}>
         <BasketContentContainer>
-          <BasketContentLeft>SUBTOTAL :</BasketContentLeft>
-          <BasketContentRight>EUR</BasketContentRight>
+          <BasketContentLeft>SUBTOTAL : </BasketContentLeft>
+          <BasketContentRight>{totalPrice}.00 EUR</BasketContentRight>
         </BasketContentContainer>
         <BasketContentContainer>
           <BasketContentLeft>SHIPPING :</BasketContentLeft>
-          <BasketContentRight>EUR</BasketContentRight>
+          <BasketContentRight>25.00 EUR</BasketContentRight>
         </BasketContentContainer>
         <BasketContentContainer>
           <BasketContentLeft>TOTAL :</BasketContentLeft>
-          <BasketContentRight>EUR</BasketContentRight>
+          <BasketContentRight>{totalPrice + 25.0}.00 EUR</BasketContentRight>
         </BasketContentContainer>
         <CheckOut>
           <a>

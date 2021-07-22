@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../../App';
 import { login } from '../../lib/api/auth';
@@ -91,11 +92,13 @@ function Login({ history }) {
             </button>
           </div>
         </LoginForm>
-        <p style={{ marginTop: '30px' }}>
-          <a href="" style={{ color: 'black', fontWeight: '500' }}>
-            Register a new account
-          </a>
-        </p>
+        <Link to="/Signin" style={{ textDecoration: 'none' }}>
+          <p style={{ marginTop: '30px' }}>
+            <span href="" style={{ color: 'black', fontWeight: '500' }}>
+              Register a new account
+            </span>
+          </p>
+        </Link>
       </LoginContationer>
     </LoginSection>
   );

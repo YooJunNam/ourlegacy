@@ -4,8 +4,9 @@ export const getUserCart = () => {
   return client.get(`cart`);
 };
 
-export const createCart = (itemId, count) => {
-  return client.post(`cart`, { itemId, count });
+export const createCart = (itemId, count, optionId) => {
+  console.log(optionId);
+  return client.post(`cart`, { itemId, count, optionId });
 };
 
 export const removeCartList = (cartId) => {

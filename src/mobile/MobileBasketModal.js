@@ -3,11 +3,23 @@ import styled from 'styled-components';
 import { Alert } from 'antd';
 import { getUserCart } from '../lib/api/cart';
 import BasketItem from '../components/BasketItem';
+import { postOrderItem } from '../lib/api/order';
 
 function MobileBasketModal(props) {
-  const { handleCloseDrawer } = props;
+  const { handleCloseDrawer, history } = props;
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
+
+  function toCheckout() {
+    const ids = items.map((item) => item.id);
+    postOrderItem(ids)
+      .then((res) => {
+        window.location.href = '/orderlist';
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   let totalPrice = 0;
   for (let item of items) {
@@ -66,7 +78,12 @@ function MobileBasketModal(props) {
           <BasketContentLeft>TOTAL :</BasketContentLeft>
           <BasketContentRight>{totalPrice + 25.0}.00 EUR</BasketContentRight>
         </BasketContentContainer>
-        <CheckOut>
+
+        <CheckOut
+          onClick={() => {
+            toCheckout();
+          }}
+        >
           <a>
             <span style={{ fontWeight: '700' }}>TO CHECKOUT</span>
           </a>

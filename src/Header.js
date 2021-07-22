@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { UserContext } from './App';
 import BasketDrawer from './components/basket-drawer/BasketDrawer';
 import NavMenu from './Navigation/NavMenu';
 
@@ -8,6 +9,8 @@ const Header = ({ openSearchModal, switchHamburger }) => {
   const [modal, setModal] = useState('category');
   const [hover, setHover] = useState(false);
   const [basketVisible, setBasketVisible] = useState(false);
+  const { userState, updateUserState } = useContext(UserContext);
+
   return (
     <Fragment>
       <div className="Page">
@@ -107,12 +110,22 @@ const Header = ({ openSearchModal, switchHamburger }) => {
             >
               BASKET / 0
             </HiddenButton>
-            <Link
-              to="/login"
-              style={{ color: 'black', textDecoration: 'none' }}
-            >
-              <HiddenButton>ACCOUNT</HiddenButton>
-            </Link>
+
+            {userState ? (
+              <Link
+                to="/orderlist"
+                style={{ textDecoration: 'none', color: 'black' }}
+              >
+                <HiddenButton>ACCOUNT</HiddenButton>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                style={{ textDecoration: 'none', color: 'black' }}
+              >
+                <HiddenButton>ACCOUNT</HiddenButton>
+              </Link>
+            )}
           </ThirdBlock>
         </MenuBar>
 

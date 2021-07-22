@@ -16,8 +16,8 @@ import Contact from './pages/Contact';
 import Detail from './pages/Detail';
 import SearchResultPage from './pages/SearchResult';
 import OrderList from './pages/account/OrderList';
-
 export const UserContext = createContext();
+
 function App() {
   const [userState, setUserState] = useState(
     window.localStorage.getItem('user') ?? null,
@@ -50,6 +50,7 @@ function App() {
       console.log(`LocalStorage is not avaliable`);
     }
   };
+
   return (
     <UserContext.Provider value={{ userState, updateUserState }}>
       {userState ? <div>로그인</div> : <div>미로그인</div>}
@@ -138,11 +139,22 @@ function App() {
           }}
         ></Route>
 
-        {/* {HamburgerModal == true ? undefined : (
-          <>
-            <Footer></Footer>
-          </>
-        )} */}
+        <Route
+          exact={true}
+          path="/orderlist"
+          render={(props) => {
+            return HamburgerModal == true ? (
+              <MobileCategory
+                {...props}
+                HamburgerModal={HamburgerModal}
+                SetMobileBasketdata={SetMobileBasketdata}
+                closeHamburgerModal={closeHambugerModal}
+              ></MobileCategory>
+            ) : (
+              <OrderList {...props} />
+            );
+          }}
+        ></Route>
 
         <Footer></Footer>
 

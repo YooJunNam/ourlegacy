@@ -6,6 +6,7 @@ import MobileBasketModal from './MobileBasketModal';
 import { Drawer } from 'antd';
 import BasketDrawer from '../components/basket-drawer/BasketDrawer';
 import { ModalStore } from '../App';
+import { Link } from 'react-router-dom';
 
 const MobileCategory = ({
   HamburgerModal,
@@ -99,7 +100,12 @@ const MobileCategory = ({
           ) : undefined}
 
           <List>
-            <CategoryBtn>ACCOUNT</CategoryBtn>
+            <Link
+              to="/login"
+              style={{ textDecoration: 'none', color: 'black' }}
+            >
+              <CategoryBtn>ACCOUNT</CategoryBtn>
+            </Link>
           </List>
           <List style={{ borderBottom: 'none' }}>
             <CategoryBtn onClick={openBasketDrawer}>BASKET / 0</CategoryBtn>

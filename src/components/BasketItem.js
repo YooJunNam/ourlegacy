@@ -20,7 +20,7 @@ const BasketItem = ({ basket }) => {
         </span>
         <br />
         <span style={{ flex: '1', fontSize: '15px' }}>
-          SIZE : {basket.item.options[0].name}
+          SIZE : {basket?.option?.name}
         </span>
       </div>
       <svg

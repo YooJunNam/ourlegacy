@@ -1,8 +1,10 @@
-import { Alert, Select } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Alert, Select, message } from 'antd';
+import React, { useEffect, useState, useContext } from 'react';
 import { Carousel } from 'react-bootstrap';
 import styled from 'styled-components';
+import { UserContext } from '../App';
 import DetailBox from '../components/DetailBox/detailbox';
+import { createCart } from '../lib/api/cart';
 import { getItemByItemId } from '../lib/api/items';
 
 function Detail({ match }) {
@@ -10,9 +12,11 @@ function Detail({ match }) {
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
-
+  const { userState, updateUserState } = useContext(UserContext);
   const [item, setItem] = useState({});
   const [error, setError] = useState(null);
+  let [selectedSize, setSelectedSize] = useState();
+  const [errorAlert, setErrorAlert] = useState(false);
 
   function getItemsDetail(itemId) {
     getItemByItemId(itemId)
@@ -66,6 +70,10 @@ function Detail({ match }) {
               defaultValue="SIZE"
               style={{ width: '95%', float: 'left' }}
               bordered={false}
+              onSelect={(value, option) => {
+                setSelectedSize(option.value);
+                console.log(selectedSize);
+              }}
             >
               {item?.options?.map((option) => (
                 <Select.Option value={option.id}>{option.name}</Select.Option>
@@ -73,7 +81,16 @@ function Detail({ match }) {
             </Select>
           </Size>
           <div>
-            <AddCart style={{ marginBottom: '40px' }}>
+            <AddCart
+              onClick={() => {
+                userState
+                  ? createCart(item.id, 1, selectedSize).then(() => {
+                      message.success(`${item.name} is added into cart.`, 1);
+                    })
+                  : message.error(`Please login before using our webpage`, 1);
+              }}
+              style={{ marginBottom: '40px' }}
+            >
               <span>ADD TO CART</span>
             </AddCart>
           </div>

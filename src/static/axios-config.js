@@ -1,2 +1,1 @@
-export const baseUrl = 'https://nujooy.shop';
-
+export const baseUrl = 'https://yoojun.shop';

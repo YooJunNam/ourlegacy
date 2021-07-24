@@ -19,7 +19,7 @@ const SearchResultPage = ({ match }) => {
 
   useEffect(() => {
     search(match.params.query);
-  }, []);
+  }, [match.params.query]);
 
   if (error)
     return (

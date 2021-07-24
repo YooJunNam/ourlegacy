@@ -13,6 +13,7 @@ const Search = withRouter(({ match, history, closeHandler }) => {
   const handleKeyPress = (e) => {
     if (e.key == 'Enter') {
       closeHandler();
+      e.target.value = '';
       history.push(`/search/${query}`);
     }
   };

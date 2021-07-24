@@ -7,7 +7,6 @@ function NavMenu({ categoryName }) {
   return (
     <div className="drop">
       <NavigationList>
-        {/* <div className="ProductList"> */}
         <ListContainer>
           {categories[categoryName]?.level2
             ?.sort((a, b) => a.id - b.id)

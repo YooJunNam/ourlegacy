@@ -1,33 +1,49 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import './App.css';
 import Body from './Body';
 import Footer from './Footer';
 import Header from './Header';
+import { checkStatus } from './lib/api/auth';
 import MobileBasketModal from './mobile/MobileBasketModal';
 import MobileCategory from './mobile/MobileCategory';
 import Search from './Navigation/Search';
 import Login from './pages/account/Login';
+import OrderList from './pages/account/OrderList';
 import Signin from './pages/account/Sign-in';
 import Category from './pages/Category';
 import Contact from './pages/Contact';
 import Detail from './pages/Detail';
 import SearchResultPage from './pages/SearchResult';
-import OrderList from './pages/account/OrderList';
 export const UserContext = createContext();
 
 function App() {
-  const [userState, setUserState] = useState(
-    window.localStorage.getItem('user') ?? null,
-  );
+  const [userState, setUserState] = useState(null);
   const [cartState, setCartState] = useState(
     window.localStorage.getItem('cart') ?? [],
   );
   const [searchClose, setSearchClose] = useState(true);
   const [HamburgerModal, setHamburgerModal] = useState(false);
   const [MobileBasketdata, SetMobileBasketdata] = useState(false);
+
+  const initializeUserInfo = async () => {
+    const userInfo = window.localStorage.getItem('user');
+    if (!userInfo) return;
+
+    try {
+      await checkStatus();
+      setUserState(userInfo);
+    } catch (e) {
+      window.localStorage.removeItem('user');
+      // window.location.href = '/login;
+    }
+  };
+
+  useEffect(() => {
+    initializeUserInfo();
+  }, []);
 
   const openSearchModal = () => {
     setSearchClose(false);

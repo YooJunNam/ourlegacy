@@ -17,3 +17,7 @@ export const logout = () => {
 export const signin = (userInfo) => {
   return client.post('api/signin', userInfo, { withCredentials: true });
 };
+
+export const checkStatus = () => {
+  return client.get('api/check');
+};

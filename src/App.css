@@ -125,3 +125,14 @@ footer {
 .categoryhover:hover > * {
   transform: translateY(0);
 }
+
+.mobilecategoryiteminfo {
+  display: none;
+}
+@media screen and (max-width: 1060px) {
+  .mobilecategoryiteminfo {
+    display: block;
+    color: black;
+    font-weight: 600;
+  }
+}

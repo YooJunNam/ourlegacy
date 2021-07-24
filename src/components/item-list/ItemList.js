@@ -7,7 +7,7 @@ const ItemList = ({ items }) => {
       <CategoryContainer>
         <ProductCategory>
           {items.map((item) => (
-            <Link to={`/detail/${item.id}`}>
+            <Link to={`/detail/${item.id}`} style={{ textDecoration: 'none' }}>
               <div style={{ position: 'relative' }}>
                 <CategoryImage
                   src={item.thumbnail}
@@ -19,6 +19,10 @@ const ItemList = ({ items }) => {
                   <ItemTitle>{item.name}</ItemTitle>
                   <ItemPrice>{item.price}.00 EUR</ItemPrice>
                 </div>
+              </div>
+              <div className="mobilecategoryiteminfo">
+                <div>{item.name}</div>
+                <div>{item.price}.00 EUR</div>
               </div>
             </Link>
           ))}
@@ -71,4 +75,5 @@ const ItemPrice = styled.p`
   fontsize: 13px;
   margintop: 12px;
 `;
+
 export default ItemList;

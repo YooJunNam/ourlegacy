@@ -1,21 +1,16 @@
-import axios from 'axios';
 import { baseUrl } from '../../static/axios-config';
 import client from './client';
 
 export const login = async (username, password) => {
-  return axios.post(
-    `${baseUrl}/api/login`,
-    { username, password },
-    { withCredentials: true },
-  );
+  return client.post(`${baseUrl}/api/login`, { username, password });
 };
 
 export const logout = () => {
-  return client.get('api/logout', { withCredentials: true });
+  return client.get('api/logout');
 };
 
 export const signin = (userInfo) => {
-  return client.post('api/signin', userInfo, { withCredentials: true });
+  return client.post('api/signin', userInfo);
 };
 
 export const checkStatus = () => {

@@ -14,7 +14,6 @@ function MobileCategoryDetail({ categoryName, linkClickHandler }) {
             <Link
               to={`/category/${item.id}`}
               onClick={() => {
-                console.log(`link click`);
                 linkClickHandler();
               }}
               style={{ color: 'black' }}

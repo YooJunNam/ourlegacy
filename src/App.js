@@ -54,7 +54,6 @@ function App() {
   };
 
   const closeHambugerModal = () => {
-    console.log(`closeHamburger`);
     setHamburgerModal(false);
   };
 

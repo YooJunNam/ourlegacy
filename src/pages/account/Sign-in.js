@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { UserContext } from '../../App';
@@ -34,7 +35,7 @@ function Signin({ history }) {
         history.push('/');
       })
       .catch((err) => {
-        console.log(err);
+        message.error(`Fail to Sign in. Try again.`, 1);
       });
   };
 

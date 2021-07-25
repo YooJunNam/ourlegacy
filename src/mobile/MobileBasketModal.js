@@ -10,6 +10,19 @@ function MobileBasketModal(props) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
+  function removeCartItem(cartId) {
+    for (const i = 0; i < items.length; i++) {
+      const cartItem = items[i];
+      console.log(`cartItem.id=${cartItem.id}, cartId=${cartId}`);
+      if (cartItem.id == cartId) {
+        items.splice(i, 1);
+        console.log(items);
+        setItems(items);
+        break;
+      }
+    }
+  }
+
   function toCheckout() {
     const ids = items.map((item) => item.id);
     postOrderItem(ids)
@@ -60,7 +73,7 @@ function MobileBasketModal(props) {
       <CartList>
         <span>YOUR CART LIST</span>
         {items.map((item) => (
-          <BasketItem basket={item} />
+          <BasketItem basket={item} removeCartItem={removeCartItem} />
         ))}
       </CartList>
 

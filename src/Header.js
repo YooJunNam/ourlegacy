@@ -108,7 +108,7 @@ const Header = ({ openSearchModal, switchHamburger }) => {
                 setBasketVisible(true);
               }}
             >
-              BASKET / 0
+              BASKET
             </HiddenButton>
 
             {userState ? (

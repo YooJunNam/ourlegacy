@@ -1,30 +1,15 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import SearchInput from '../components/SearchInput/SearchInput';
 
-const Search = withRouter(({ match, history, closeHandler }) => {
-  const [query, setQuery] = useState('');
-
-  const inputHandler = (e) => {
-    console.log(history);
-    setQuery(e.target.value);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key == 'Enter') {
-      closeHandler();
-      e.target.value = '';
-      history.push(`/search/${query}`);
-    }
-  };
-
+const Search = withRouter(({ history, closeHandler }) => {
   return (
     <SearchContainer onClick={(e) => e.stopPropagation()}>
       <ProductSearch>
         <SearchInput
-          onChange={inputHandler}
-          placeholder="Search product"
-          onKeyPress={handleKeyPress}
+          closeHandler={closeHandler}
+          history={history}
         ></SearchInput>
         <SearchBtn>
           <span class="MuiIconButton-label">
@@ -58,12 +43,6 @@ const ProductSearch = styled.div`
   display: inline-flex;
   width: 70%;
   border-bottom: 1px solid;
-`;
-
-const SearchInput = styled.input`
-  flex: 35;
-  width: 800px;
-  border: none;
 `;
 
 const SearchBtn = styled.button`

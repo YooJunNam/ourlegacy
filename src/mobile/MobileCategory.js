@@ -12,6 +12,7 @@ const MobileCategory = ({
   HamburgerModal,
   SetMobileBasketdata,
   closeHamburgerModal,
+  history,
 }) => {
   const [MobileMenModal, SetMobileMenModal] = useState(false);
   const [MobileWomenModal, SetMobileWomenModal] = useState(false);
@@ -27,12 +28,31 @@ const MobileCategory = ({
   const closeBasketDrawer = () => {
     setVisible(false);
   };
+
+  const [query, setQuery] = useState('');
+
+  const inputHandler = (e) => {
+    setQuery(e.target.value);
+    console.log(history);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key == 'Enter') {
+      e.target.value = '';
+      history.push(`/search/${query}`);
+    }
+  };
+
   return (
     <>
       {HamburgerModal === true ? (
         <div style={{ marginLeft: '2rem', width: '80%' }}>
           <div style={{ textAlign: 'center', background: 'none' }}>
-            <MobileSearch placeholder="SEARCH"></MobileSearch>
+            <MobileSearch
+              placeholder="SEARCH"
+              onChange={inputHandler}
+              onKeyPress={handleKeyPress}
+            ></MobileSearch>
           </div>
 
           <List>

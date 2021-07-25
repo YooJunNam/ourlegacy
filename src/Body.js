@@ -16,7 +16,7 @@ function Body() {
 
       <Section id="firstSection">
         <GridContainer>
-          <Link to="/category">
+          <Link to="/category/2">
             <LinkImage
               hoverMsg={'MENS NEW ARRIVALS'}
               src={
@@ -25,12 +25,14 @@ function Body() {
             ></LinkImage>
           </Link>
           <MobileCategoryName>MENS NEW ARRIVALS</MobileCategoryName>
-          <LinkImage
-            hoverMsg={'WOMENS NEW ARRIVALS'}
-            src={
-              'https://ourlegacy.centracdn.net/client/dynamic/articles/landing_womens_w22_3743.jpg'
-            }
-          ></LinkImage>
+          <Link to="/category/21">
+            <LinkImage
+              hoverMsg={'WOMENS NEW ARRIVALS'}
+              src={
+                'https://ourlegacy.centracdn.net/client/dynamic/articles/landing_womens_w22_3743.jpg'
+              }
+            ></LinkImage>
+          </Link>
           <MobileCategoryName>WOMENS NEW ARRIVALS</MobileCategoryName>
         </GridContainer>
       </Section>
@@ -45,12 +47,14 @@ function Body() {
           ></LinkImage>
 
           <MobileCategoryName>EXTENDED THIRD CUT</MobileCategoryName>
-          <LinkImage
-            hoverMsg={'EYE WEAR'}
-            src={
-              'https://ourlegacy.centracdn.net/client/dynamic/articles/glasseslanding_6337.jpg'
-            }
-          ></LinkImage>
+          <Link to="/category/16">
+            <LinkImage
+              hoverMsg={'EYE WEAR'}
+              src={
+                'https://ourlegacy.centracdn.net/client/dynamic/articles/glasseslanding_6337.jpg'
+              }
+            ></LinkImage>
+          </Link>
           <MobileCategoryName>EYE WEAR</MobileCategoryName>
         </GridContainer>
       </Section>
@@ -64,12 +68,14 @@ function Body() {
             }
           ></LinkImage>
           <MobileCategoryName>DRAPE TECH TRUNKS</MobileCategoryName>
-          <LinkImage
-            hoverMsg={'MENS SHIRTING'}
-            src={
-              'https://ourlegacy.centracdn.net/client/dynamic/articles/bambo002fuji1007_4429.jpg'
-            }
-          ></LinkImage>
+          <Link to="/category/3">
+            <LinkImage
+              hoverMsg={'MENS SHIRTING'}
+              src={
+                'https://ourlegacy.centracdn.net/client/dynamic/articles/bambo002fuji1007_4429.jpg'
+              }
+            ></LinkImage>
+          </Link>
           <MobileCategoryName>MENS SHIRTING</MobileCategoryName>
         </GridContainer>
       </Section>

@@ -69,7 +69,6 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userState, updateUserState }}>
-      {userState ? <div>로그인</div> : <div>미로그인</div>}
       <div className="App">
         {MobileBasketdata == true ? <MobileBasketModal /> : undefined}
         <Header
@@ -80,9 +79,10 @@ function App() {
         <Route
           exact={true}
           path="/"
-          render={() => {
+          render={(props) => {
             return HamburgerModal == true ? (
               <MobileCategory
+                {...props}
                 HamburgerModal={HamburgerModal}
                 SetMobileBasketdata={SetMobileBasketdata}
                 closeHamburgerModal={closeHambugerModal}

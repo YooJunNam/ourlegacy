@@ -1,8 +1,8 @@
+import { Alert } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Alert } from 'antd';
-import { getUserCart } from '../lib/api/cart';
 import BasketItem from '../components/BasketItem';
+import { getUserCart } from '../lib/api/cart';
 import { postOrderItem } from '../lib/api/order';
 
 function MobileBasketModal(props) {
@@ -11,13 +11,13 @@ function MobileBasketModal(props) {
   const [error, setError] = useState(null);
 
   function removeCartItem(cartId) {
-    for (let i = 0; i < items.length; i++) {
+    for (const i = 0; i < items.length; i++) {
       const cartItem = items[i];
       console.log(`cartItem.id=${cartItem.id}, cartId=${cartId}`);
       if (cartItem.id == cartId) {
-        const deletedArray = items.splice(i, 1);
-        console.log(deletedArray);
-        setItems(deletedArray);
+        items.splice(i, 1);
+        console.log(items);
+        setItems(items);
         break;
       }
     }

@@ -1,5 +1,5 @@
-import { Alert, Select, message } from 'antd';
-import React, { useEffect, useState, useContext } from 'react';
+import { Alert, message, Select } from 'antd';
+import React, { useContext, useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import styled from 'styled-components';
 import { UserContext } from '../App';
@@ -72,7 +72,6 @@ function Detail({ match }) {
               bordered={false}
               onSelect={(value, option) => {
                 setSelectedSize(option.value);
-                console.log(selectedSize);
               }}
             >
               {item?.options?.map((option) => (

@@ -1,8 +1,8 @@
+import { Alert, message } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Alert } from 'antd';
-import { getUserCart } from '../lib/api/cart';
 import BasketItem from '../components/BasketItem';
+import { getUserCart } from '../lib/api/cart';
 import { postOrderItem } from '../lib/api/order';
 
 function MobileBasketModal(props) {
@@ -17,7 +17,7 @@ function MobileBasketModal(props) {
         window.location.href = '/orderlist';
       })
       .catch((err) => {
-        console.log(err);
+        message.error(`Fail to connect to server. Try again.`, 1);
       });
   }
 
@@ -29,7 +29,6 @@ function MobileBasketModal(props) {
   function getBasket() {
     getUserCart()
       .then((res) => {
-        console.log(res.data);
         setItems(res.data);
       })
       .catch((error) => {

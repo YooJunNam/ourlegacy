@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -34,7 +35,7 @@ function Login({ history }) {
         history.push('/');
       })
       .catch((err) => {
-        console.log(err);
+        message.error(`Fail to login. Try Again.`, 1);
       });
   };
 

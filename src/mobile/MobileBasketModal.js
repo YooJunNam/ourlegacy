@@ -11,13 +11,12 @@ function MobileBasketModal(props) {
   const [error, setError] = useState(null);
 
   function removeCartItem(cartId) {
-    for (const i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
       const cartItem = items[i];
       console.log(`cartItem.id=${cartItem.id}, cartId=${cartId}`);
       if (cartItem.id == cartId) {
         items.splice(i, 1);
-        console.log(items);
-        setItems(items);
+        setItems([...items]);
         break;
       }
     }

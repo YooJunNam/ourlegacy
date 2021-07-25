@@ -38,7 +38,7 @@ function MobileBasketModal(props) {
 
   useEffect(() => {
     getBasket();
-  }, []);
+  }, [props]);
 
   if (error)
     return (

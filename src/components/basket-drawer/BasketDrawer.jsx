@@ -1,10 +1,15 @@
 import { Drawer } from 'antd';
+import React from 'react';
 import MobileBasketModal from '../../mobile/MobileBasketModal';
-import React, { useState } from 'react';
 
 const BasketDrawer = ({ visible, onClose, width }) => {
   return (
-    <Drawer closable={false} visible={visible} width={width ?? '100%'}>
+    <Drawer
+      closable={false}
+      visible={visible}
+      width={width ?? '100%'}
+      mask={false}
+    >
       <MobileBasketModal handleCloseDrawer={onClose} />
     </Drawer>
   );

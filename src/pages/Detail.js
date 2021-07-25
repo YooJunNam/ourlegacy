@@ -15,8 +15,7 @@ function Detail({ match }) {
   const { userState, updateUserState } = useContext(UserContext);
   const [item, setItem] = useState({});
   const [error, setError] = useState(null);
-  let [selectedSize, setSelectedSize] = useState();
-  const [errorAlert, setErrorAlert] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   function getItemsDetail(itemId) {
     getItemByItemId(itemId)
@@ -41,6 +40,22 @@ function Detail({ match }) {
         showIcon
       />
     );
+
+  const addToCartHandler = () => {
+    console.log(selectedSize);
+    if (selectedSize === null || selectedSize === undefined) {
+      message.warning(`Please  select options.`, 1);
+      return;
+    }
+
+    if (userState) {
+      createCart(item.id, 1, selectedSize).then(() => {
+        message.success(`${item.name} is added into cart.`, 1);
+      });
+    } else {
+      message.success(`${item.name} is added into cart.`, 1);
+    }
+  };
 
   return (
     <Container>
@@ -81,13 +96,7 @@ function Detail({ match }) {
           </Size>
           <div>
             <AddCart
-              onClick={() => {
-                userState
-                  ? createCart(item.id, 1, selectedSize).then(() => {
-                      message.success(`${item.name} is added into cart.`, 1);
-                    })
-                  : message.error(`Please login before using our webpage`, 1);
-              }}
+              onClick={addToCartHandler}
               style={{ marginBottom: '40px' }}
             >
               <span>ADD TO CART</span>

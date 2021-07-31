@@ -27,5 +27,6 @@
 - 일반적인 Web width와 Mobile width의 layout을 설정하여 2가지 스크린으로 반응형 구현
 
 
+<~>
 - React Router DOM을 이용해 SPA구조로 구현
 - 중복되는 레이아웃들은 모듈화하여 재사용할 수 있도록 구현

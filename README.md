@@ -1,4 +1,4 @@
-# Ourlegacy 쇼핑몰 클론
+# Ourlegacy 쇼핑몰 클론 😉 
 
 [Demo Page](https://sharp-davinci-fe6514.netlify.app)
 

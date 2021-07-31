@@ -1,6 +1,12 @@
 # Ourlegacy 쇼핑몰 클론
 
-[데모 페이지](https://sharp-davinci-fe6514.netlify.app)
+[Demo Page](https://sharp-davinci-fe6514.netlify.app)
+
+[Demo Image] ![image](https://user-images.githubusercontent.com/81619737/127739016-3a672a01-e56d-4107-b57e-7bb17290ef23.png)
+
+Normal 
+- React Router DOM을 이용해 SPA구조로 구현
+- 중복되는 레이아웃들은 모듈화하여 재사용할 수 있도록 구현
 
 로그인/회원가입
 - ContextAPI를 이용해 유저정보/로그인 상태를 전역적으로 관리
@@ -27,6 +33,4 @@
 - 일반적인 Web width와 Mobile width의 layout을 설정하여 2가지 스크린으로 반응형 구현
 
 
-<~>
-- React Router DOM을 이용해 SPA구조로 구현
-- 중복되는 레이아웃들은 모듈화하여 재사용할 수 있도록 구현
+

@@ -2,7 +2,7 @@
 
 [Demo Page](https://sharp-davinci-fe6514.netlify.app)
 
-[Demo Image] ![image](https://user-images.githubusercontent.com/81619737/127739016-3a672a01-e56d-4107-b57e-7bb17290ef23.png)
+[Demo Image] ![image](https://user-images.githubusercontent.com/81619737/127739043-f39de965-dc93-4d76-a424-21204240ea74.png)
 
 Normal 
 - React Router DOM을 이용해 SPA구조로 구현
